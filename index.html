@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Undangan Halal Bihalal | ARK Jinzai Solusi</title>
+  <style>
+    :root {
+      --gold: #d6b36d;
+      --gold-soft: #f1deb4;
+      --ink: #1b1a18;
+      --cream: #fff7e8;
+      --card: rgba(255, 255, 255, 0.12);
+      --line: rgba(255, 255, 255, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", "Poppins", "Trebuchet MS", sans-serif;
+      color: #f8f7f4;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(214, 179, 109, 0.35), transparent 42%),
+        radial-gradient(circle at 85% 10%, rgba(255, 255, 255, 0.18), transparent 32%),
+        radial-gradient(circle at 80% 85%, rgba(214, 179, 109, 0.22), transparent 36%),
+        linear-gradient(135deg, #11100f, #22201c 45%, #12110f 100%);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .ornament {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .ornament::before,
+    .ornament::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border: 1px solid rgba(214, 179, 109, 0.26);
+      border-radius: 50%;
+      filter: blur(0.5px);
+      animation: float 8s ease-in-out infinite alternate;
+    }
+
+    .ornament::before {
+      top: -160px;
+      left: -120px;
+    }
+
+    .ornament::after {
+      right: -100px;
+      bottom: -180px;
+      animation-delay: 1.2s;
+    }
+
+    .lebaran-decor {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .lantern {
+      position: absolute;
+      top: -8px;
+      width: 26px;
+      height: 42px;
+      border: 1px solid rgba(241, 222, 180, 0.55);
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(214, 179, 109, 0.32), rgba(214, 179, 109, 0.08));
+      box-shadow: 0 0 16px rgba(214, 179, 109, 0.3);
+      animation: sway 4.2s ease-in-out infinite;
+    }
+
+    .lantern::before {
+      content: "";
+      position: absolute;
+      top: -34px;
+      left: 50%;
+      width: 1px;
+      height: 34px;
+      background: rgba(255, 255, 255, 0.35);
+      transform: translateX(-50%);
+    }
+
+    .lantern::after {
+      content: "";
+      position: absolute;
+      bottom: -9px;
+      left: 50%;
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      border: 1px solid rgba(241, 222, 180, 0.5);
+      transform: translateX(-50%) rotate(45deg);
+      background: rgba(214, 179, 109, 0.35);
+    }
+
+    .lantern-left {
+      left: 26px;
+      animation-delay: 0.4s;
+    }
+
+    .lantern-right {
+      right: 26px;
+      animation-delay: 1.1s;
+    }
+
+    .lantern-mid {
+      left: 50%;
+      width: 22px;
+      height: 36px;
+      transform: translateX(-50%);
+      animation-delay: 0.75s;
+    }
+
+    .star {
+      position: absolute;
+      color: rgba(255, 239, 199, 0.9);
+      font-size: 16px;
+      line-height: 1;
+      animation: twinkle 2.3s ease-in-out infinite;
+    }
+
+    .star-a {
+      top: 84px;
+      left: 64px;
+    }
+
+    .star-b {
+      top: 72px;
+      right: 74px;
+      animation-delay: 0.9s;
+    }
+
+    .star-c {
+      top: 126px;
+      left: 122px;
+      font-size: 11px;
+      animation-delay: 0.4s;
+    }
+
+    .star-d {
+      top: 140px;
+      right: 144px;
+      font-size: 12px;
+      animation-delay: 1.2s;
+    }
+
+    .star-e {
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      animation-delay: 0.6s;
+    }
+
+    .moon {
+      position: absolute;
+      top: 74px;
+      right: 112px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      box-shadow: -8px 0 0 0 rgba(241, 222, 180, 0.85);
+      transform: rotate(-16deg);
+      opacity: 0.9;
+    }
+
+    .ketupat {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border: 1px solid rgba(241, 222, 180, 0.62);
+      transform: rotate(45deg);
+      background:
+        linear-gradient(45deg, rgba(214, 179, 109, 0.32) 25%, transparent 25% 50%, rgba(214, 179, 109, 0.32) 50% 75%, transparent 75%),
+        linear-gradient(-45deg, rgba(214, 179, 109, 0.3) 25%, transparent 25% 50%, rgba(214, 179, 109, 0.3) 50% 75%, transparent 75%);
+      background-size: 10px 10px;
+      animation: float 6s ease-in-out infinite alternate;
+    }
+
+    .ketupat::before,
+    .ketupat::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      width: 1px;
+      height: 14px;
+      background: rgba(241, 222, 180, 0.5);
+    }
+
+    .ketupat::before {
+      left: 42%;
+      transform: rotate(12deg);
+    }
+
+    .ketupat::after {
+      right: 42%;
+      transform: rotate(-12deg);
+    }
+
+    .ketupat-left {
+      left: 78px;
+      bottom: 56px;
+    }
+
+    .ketupat-right {
+      right: 86px;
+      bottom: 52px;
+      animation-delay: 0.8s;
+    }
+
+    .ketupat-mini-left {
+      left: 132px;
+      bottom: 84px;
+      width: 12px;
+      height: 12px;
+      opacity: 0.85;
+      animation-delay: 0.2s;
+    }
+
+    .ketupat-mini-right {
+      right: 138px;
+      bottom: 80px;
+      width: 12px;
+      height: 12px;
+      opacity: 0.85;
+      animation-delay: 1s;
+    }
+
+    .corner-motif {
+      position: absolute;
+      width: 86px;
+      height: 86px;
+      border: 1px solid rgba(241, 222, 180, 0.28);
+      border-radius: 16px;
+      opacity: 0.65;
+      background:
+        radial-gradient(circle at 24% 24%, rgba(214, 179, 109, 0.35), transparent 32%),
+        repeating-linear-gradient(45deg, rgba(241, 222, 180, 0.12) 0 2px, transparent 2px 6px);
+    }
+
+    .corner-top-left {
+      top: 16px;
+      left: 14px;
+      clip-path: polygon(0 0, 100% 0, 0 100%);
+    }
+
+    .corner-top-right {
+      top: 16px;
+      right: 14px;
+      clip-path: polygon(0 0, 100% 0, 100% 100%);
+    }
+
+    .edge-dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(241, 222, 180, 0.75);
+      box-shadow: 0 0 8px rgba(214, 179, 109, 0.7);
+      animation: twinkle 2.8s ease-in-out infinite;
+    }
+
+    .edge-dot-1 {
+      top: 116px;
+      left: 24%;
+    }
+
+    .edge-dot-2 {
+      top: 116px;
+      right: 25%;
+      animation-delay: 0.7s;
+    }
+
+    .edge-dot-3 {
+      bottom: 64px;
+      left: 33%;
+      animation-delay: 1.1s;
+    }
+
+    .edge-dot-4 {
+      bottom: 68px;
+      right: 34%;
+      animation-delay: 0.3s;
+    }
+
+    .confetti {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      top: -26px;
+      width: 8px;
+      height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(241, 222, 180, 0.95), rgba(214, 179, 109, 0.42));
+      opacity: 0.78;
+      animation: confetti-fall 7.5s linear infinite;
+    }
+
+    .confetti-piece::before {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+    }
+
+    .c1 { left: 8%; animation-delay: 0.2s; }
+    .c2 { left: 16%; animation-delay: 1.3s; animation-duration: 8.2s; }
+    .c3 { left: 27%; animation-delay: 0.9s; animation-duration: 7.1s; }
+    .c4 { left: 39%; animation-delay: 2s; }
+    .c5 { left: 52%; animation-delay: 0.4s; animation-duration: 8s; }
+    .c6 { left: 63%; animation-delay: 1.8s; animation-duration: 7.2s; }
+    .c7 { left: 74%; animation-delay: 0.7s; animation-duration: 8.3s; }
+    .c8 { left: 85%; animation-delay: 1.5s; }
+    .c9 { left: 92%; animation-delay: 2.4s; animation-duration: 7.4s; }
+
+    .eid-greeting {
+      margin: 4px auto 0;
+      max-width: 760px;
+      text-align: center;
+      border: 1px solid rgba(241, 222, 180, 0.4);
+      border-radius: 14px;
+      padding: 13px 14px;
+      background: linear-gradient(145deg, rgba(214, 179, 109, 0.18), rgba(255, 255, 255, 0.05));
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .eid-greeting strong {
+      display: block;
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      color: #ffe9bf;
+      letter-spacing: 0.03em;
+      margin-bottom: 4px;
+    }
+
+    .eid-greeting span {
+      color: #f6edd9;
+      line-height: 1.6;
+      font-size: 0.96rem;
+    }
+
+    .invitation {
+      position: relative;
+      z-index: 1;
+      width: min(900px, 100%);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+      box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+
+    .header {
+      text-align: center;
+      padding: 58px 30px 28px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      position: relative;
+    }
+
+    .bismillah {
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      font-size: 0.74rem;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 3.8vw, 3.2rem);
+      letter-spacing: 0.04em;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .host {
+      margin-top: 10px;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: #f7ecd3;
+    }
+
+    .divider {
+      margin: 24px auto 0;
+      width: 190px;
+      height: 14px;
+      position: relative;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      position: absolute;
+      top: 6px;
+      width: 72px;
+      border-top: 1px solid rgba(255, 255, 255, 0.38);
+    }
+
+    .divider::before {
+      left: 0;
+    }
+
+    .divider::after {
+      right: 0;
+    }
+
+    .divider span {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      transform: rotate(45deg);
+      border: 1px solid var(--gold);
+      background: rgba(214, 179, 109, 0.16);
+    }
+
+    .content {
+      padding: 34px 28px 36px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .quote {
+      margin: 0 auto;
+      max-width: 760px;
+      text-align: center;
+      line-height: 1.75;
+      color: #fbf8f0;
+      font-size: 1.03rem;
+    }
+
+    .arabic-wrap {
+      text-align: center;
+      margin: 0 auto 2px;
+    }
+
+    .arabic {
+      margin: 0;
+      font-size: clamp(1.5rem, 3.6vw, 2rem);
+      color: #f7e2b5;
+      letter-spacing: 0.01em;
+      line-height: 1.9;
+      text-shadow: 0 3px 14px rgba(0, 0, 0, 0.35);
+    }
+
+    .arabic-meaning {
+      margin: 2px 0 0;
+      color: #eadfc9;
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    .cards {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.17);
+      border-radius: 16px;
+      padding: 16px 18px;
+      min-height: 118px;
+    }
+
+    .label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: #f3d8a0;
+      margin: 0 0 8px;
+    }
+
+    .value {
+      margin: 0;
+      color: #fff;
+      line-height: 1.5;
+      font-size: 1rem;
+    }
+
+    .agenda {
+      border: 1px dashed rgba(255, 255, 255, 0.3);
+      border-radius: 16px;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .agenda p {
+      margin: 0;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .actions {
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    .rsvp-form {
+      margin: 2px auto 0;
+      width: min(540px, 100%);
+      display: grid;
+      gap: 10px;
+    }
+
+    .rsvp-input {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border-radius: 999px;
+      padding: 12px 16px;
+      font-size: 0.98rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .rsvp-input::placeholder {
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    .rsvp-input:focus {
+      border-color: rgba(241, 222, 180, 0.85);
+      box-shadow: 0 0 0 3px rgba(214, 179, 109, 0.2);
+    }
+
+    .rsvp-select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-color: rgba(255, 255, 255, 0.12);
+      background-image:
+        radial-gradient(circle at calc(100% - 24px) 50%, rgba(214, 179, 109, 0.25) 0 18px, transparent 19px),
+        linear-gradient(45deg, transparent 50%, rgba(255, 255, 255, 0.9) 50%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.9) 50%, transparent 50%);
+      background-position:
+        right center,
+        calc(100% - 22px) calc(50% + 1px),
+        calc(100% - 16px) calc(50% + 1px);
+      background-size: auto, 6px 6px, 6px 6px;
+      background-repeat: no-repeat;
+      padding-right: 52px;
+      cursor: pointer;
+    }
+
+    .rsvp-select:hover {
+      border-color: rgba(241, 222, 180, 0.7);
+      background-color: rgba(255, 255, 255, 0.16);
+    }
+
+    .rsvp-select option {
+      background: #22201c;
+      color: #f8f7f4;
+    }
+
+    .rsvp-status {
+      margin: 4px 0 0;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #efe7d4;
+      min-height: 20px;
+    }
+
+    .rsvp-status.success {
+      color: #d3ffd6;
+    }
+
+    .rsvp-status.error {
+      color: #ffd4d4;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--ink);
+      background: linear-gradient(135deg, #e7c684, #f7e5be);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      padding: 12px 24px;
+      border-radius: 999px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 22px rgba(0, 0, 0, 0.32);
+    }
+
+    .footer {
+      margin-top: 18px;
+      text-align: center;
+      color: #f2e7cd;
+      line-height: 1.7;
+      font-size: 0.95rem;
+      padding-bottom: 8px;
+    }
+
+    .audio-control {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 10;
+      border: 1px solid rgba(241, 222, 180, 0.5);
+      background: linear-gradient(145deg, rgba(26, 24, 21, 0.9), rgba(53, 47, 38, 0.85));
+      color: #f7e5be;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+
+    .audio-control:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.42);
+      background: linear-gradient(145deg, rgba(34, 31, 27, 0.95), rgba(64, 56, 45, 0.9));
+    }
+
+    .audio-control .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #90f4ad;
+      box-shadow: 0 0 10px rgba(144, 244, 173, 0.8);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .audio-control.playing .dot {
+      opacity: 1;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(0) scale(1);
+      }
+      to {
+        transform: translateY(18px) scale(1.05);
+      }
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0.35;
+        transform: scale(0.9);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.15);
+      }
+    }
+
+    @keyframes sway {
+      0%, 100% {
+        transform: rotate(-3deg);
+      }
+      50% {
+        transform: rotate(3deg);
+      }
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(-24px) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.78;
+      }
+      90% {
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(760px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 560px) {
+      body {
+        padding: 14px;
+      }
+
+      .header {
+        padding-top: 46px;
+      }
+
+      .content {
+        padding: 24px 18px 26px;
+      }
+
+      .lantern,
+      .ketupat,
+      .moon,
+      .star,
+      .corner-motif,
+      .edge-dot {
+        opacity: 0.65;
+      }
+
+      .lantern-left {
+        left: 14px;
+      }
+
+      .lantern-right {
+        right: 14px;
+      }
+
+      .ketupat-mini-left,
+      .ketupat-mini-right,
+      .star-c,
+      .star-d {
+        display: none;
+      }
+
+      .confetti-piece {
+        opacity: 0.45;
+      }
+
+      .eid-greeting {
+        padding: 12px 10px;
+      }
+
+      .audio-control {
+        right: 12px;
+        bottom: 12px;
+        padding: 9px 12px;
+        font-size: 0.84rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ornament" aria-hidden="true"></div>
+
+  <main class="invitation">
+    <div class="lebaran-decor" aria-hidden="true">
+      <div class="confetti">
+        <span class="confetti-piece c1"></span>
+        <span class="confetti-piece c2"></span>
+        <span class="confetti-piece c3"></span>
+        <span class="confetti-piece c4"></span>
+        <span class="confetti-piece c5"></span>
+        <span class="confetti-piece c6"></span>
+        <span class="confetti-piece c7"></span>
+        <span class="confetti-piece c8"></span>
+        <span class="confetti-piece c9"></span>
+      </div>
+      <span class="lantern lantern-left"></span>
+      <span class="lantern lantern-mid"></span>
+      <span class="lantern lantern-right"></span>
+      <span class="star star-a">✦</span>
+      <span class="star star-b">✦</span>
+      <span class="star star-c">✦</span>
+      <span class="star star-d">✦</span>
+      <span class="star star-e">✦</span>
+      <span class="moon"></span>
+      <span class="ketupat ketupat-left"></span>
+      <span class="ketupat ketupat-right"></span>
+      <span class="ketupat ketupat-mini-left"></span>
+      <span class="ketupat ketupat-mini-right"></span>
+      <span class="corner-motif corner-top-left"></span>
+      <span class="corner-motif corner-top-right"></span>
+      <span class="edge-dot edge-dot-1"></span>
+      <span class="edge-dot edge-dot-2"></span>
+      <span class="edge-dot edge-dot-3"></span>
+      <span class="edge-dot edge-dot-4"></span>
+    </div>
+
+    <section class="header">
+      <div class="bismillah">Bismillahirrahmanirrahim</div>
+      <h1>Undangan Halal Bihalal</h1>
+      <p class="host">Keluarga Besar ARK Jinzai Solusi</p>
+      <div class="divider"><span></span></div>
+    </section>
+
+    <section class="content">
+      <div class="arabic-wrap">
+        <p class="arabic" dir="rtl" lang="ar">تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ، كُلُّ عَامٍ وَأَنْتُمْ بِخَيْرٍ</p>
+        <p class="arabic-meaning">Semoga Allah menerima amal ibadah kami dan Anda, setiap tahun semoga selalu dalam kebaikan.</p>
+      </div>
+
+      <div class="eid-greeting">
+        <strong>Selamat Hari Raya Idulfitri 1447 H</strong>
+        <span>Mohon maaf lahir dan batin. Semoga Allah melimpahkan keberkahan, kebahagiaan, dan mempererat tali silaturahmi kita semua.</span>
+      </div>
+
+      <p class="quote">
+        Dengan penuh rasa syukur dan kebahagiaan, kami mengundang Bapak/Ibu/Saudara/i untuk hadir
+        dalam acara Halal Bihalal sebagai momen mempererat silaturahmi, saling memaafkan, dan
+        memperkuat kebersamaan keluarga besar ARK Jinzai Solusi.
+      </p>
+
+      <div class="cards">
+        <article class="card">
+          <p class="label">Hari & Tanggal</p>
+          <p class="value">Senin, 23 Maret 2026</p>
+        </article>
+        <article class="card">
+          <p class="label">Waktu</p>
+          <p class="value">08.00 WITA - Selesai</p>
+        </article>
+        <article class="card">
+          <p class="label">Tempat</p>
+          <p class="value">Aula ARK Jinzai Solusi<br />Gerepek - Lombok Tengah</p>
+        </article>
+      </div>
+
+      <div class="agenda">
+        <p>
+          Rangkaian Acara: Pembukaan, Sambutan, Tausiyah Singkat, Ramah Tamah, dan Makan Bersama.
+          <br />
+          Dress code: Rapi dan Sopan.
+        </p>
+      </div>
+
+      <div class="actions">
+        <form class="rsvp-form" id="rsvpForm">
+          <input
+            class="rsvp-input"
+            id="guestName"
+            name="guestName"
+            type="text"
+            placeholder="Tulis nama Anda"
+            required
+          />
+          <select class="rsvp-input rsvp-select" id="attendanceStatus" name="attendanceStatus" required>
+            <option value="">Pilih konfirmasi kehadiran</option>
+            <option value="Hadir">Hadir</option>
+            <option value="Tidak Hadir">Tidak Hadir</option>
+          </select>
+          <button class="btn" type="submit">Konfirmasi Kehadiran</button>
+          <p class="rsvp-status" id="rsvpStatus"></p>
+        </form>
+      </div>
+
+      <p class="footer">
+        Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i dapat
+        berkenan hadir.<br />
+        Terima kasih.
+      </p>
+    </section>
+  </main>
+
+  <audio id="bgMusic" loop preload="auto" autoplay playsinline>
+    <source src="backsound.mp3" type="audio/mpeg" />
+  </audio>
+  <button class="audio-control" id="audioControl" type="button" aria-label="Putar musik latar">
+    <span class="dot" aria-hidden="true"></span>
+    <span id="audioText">Putar Musik</span>
+  </button>
+
+  <script>
+    // Ganti URL ini dengan Web App URL dari Google Apps Script Anda.
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzqKDMNzQVTfFGP53FcE3sm4ILiv6Do8Cj5x7HytiiPvCSkbudGno4EWhGqrHX711BM/exec";
+
+    const rsvpForm = document.getElementById("rsvpForm");
+    const guestNameInput = document.getElementById("guestName");
+    const attendanceStatusInput = document.getElementById("attendanceStatus");
+    const rsvpStatus = document.getElementById("rsvpStatus");
+    const submitButton = rsvpForm.querySelector("button[type='submit']");
+    const bgMusic = document.getElementById("bgMusic");
+    const audioControl = document.getElementById("audioControl");
+    const audioText = document.getElementById("audioText");
+
+    function setAudioState(isPlaying) {
+      if (isPlaying) {
+        audioControl.classList.add("playing");
+        audioText.textContent = "Musik On";
+      } else {
+        audioControl.classList.remove("playing");
+        audioText.textContent = "Putar Musik";
+      }
+    }
+
+    async function playMusic() {
+      try {
+        await bgMusic.play();
+        setAudioState(true);
+      } catch (error) {
+        setAudioState(false);
+      }
+    }
+
+    audioControl.addEventListener("click", async function () {
+      if (bgMusic.paused) {
+        await playMusic();
+      } else {
+        bgMusic.pause();
+        setAudioState(false);
+      }
+    });
+
+    // Coba autoplay saat halaman selesai dimuat.
+    window.addEventListener("load", function () {
+      playMusic();
+    });
+
+    // Fallback jika autoplay diblokir browser: mainkan saat interaksi pertama.
+    ["click", "keydown", "touchstart"].forEach(function (eventName) {
+      window.addEventListener(eventName, playMusic, { once: true });
+    });
+
+    function setStatus(message, type) {
+      rsvpStatus.textContent = message;
+      rsvpStatus.className = "rsvp-status" + (type ? " " + type : "");
+    }
+
+    rsvpForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const guestName = guestNameInput.value.trim();
+      const attendanceStatus = attendanceStatusInput.value;
+      if (!guestName) {
+        guestNameInput.focus();
+        setStatus("Nama wajib diisi.", "error");
+        return;
+      }
+
+      if (!attendanceStatus) {
+        attendanceStatusInput.focus();
+        setStatus("Silakan pilih status kehadiran.", "error");
+        return;
+      }
+
+      if (APPS_SCRIPT_URL === "PASTE_WEB_APP_URL_DI_SINI") {
+        setStatus("URL Google Apps Script belum diisi.", "error");
+        return;
+      }
+
+      submitButton.disabled = true;
+      setStatus("Mengirim konfirmasi...", "");
+
+      try {
+        const payload = new URLSearchParams({
+          nama: guestName,
+          status: attendanceStatus,
+          acara: "Halal Bihalal Keluarga Besar ARK Jinzai Solusi",
+          waktu_kirim: new Date().toISOString()
+        });
+
+        await fetch(APPS_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: payload
+        });
+
+        setStatus("Konfirmasi berhasil tersimpan. Terima kasih.", "success");
+        rsvpForm.reset();
+      } catch (error) {
+        setStatus("Konfirmasi gagal dikirim. Coba lagi sebentar.", "error");
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
