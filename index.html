@@ -510,6 +510,72 @@
       font-size: 1rem;
     }
 
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card-link:hover {
+      border-color: rgba(241, 222, 180, 0.5);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-arrow {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 20px;
+      height: 20px;
+      color: rgba(241, 222, 180, 0.7);
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .card-link:hover .card-arrow {
+      color: var(--gold-soft);
+      transform: translate(2px, -2px);
+    }
+
+    .card-arrow svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .map-preview-wrap {
+      margin-top: 4px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .map-preview {
+      display: block;
+      width: 100%;
+      height: 220px;
+      border: 0;
+    }
+
+    .map-preview-open {
+      display: block;
+      text-align: center;
+      padding: 10px 14px;
+      font-size: 0.88rem;
+      color: var(--gold-soft);
+      text-decoration: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .map-preview-open:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
     .agenda {
       border: 1px dashed rgba(255, 255, 255, 0.3);
       border-radius: 16px;
@@ -733,6 +799,10 @@
         padding: 24px 18px 26px;
       }
 
+      .map-preview {
+        height: 200px;
+      }
+
       .lantern,
       .ketupat,
       .moon,
@@ -850,12 +920,29 @@
         </article>
         <article class="card">
           <p class="label">Waktu</p>
-          <p class="value">08.00 WITA - Selesai</p>
+          <p class="value">10.00 WITA - Selesai</p>
         </article>
-        <article class="card">
+        <a class="card card-link" href="https://maps.app.goo.gl/J7pokgLf3o3Qqt3W6" target="_blank" rel="noopener noreferrer" title="Buka lokasi di Google Maps" aria-label="Buka lokasi IONE HOME RESIDENCE di Google Maps">
           <p class="label">Tempat</p>
-          <p class="value">Aula ARK Jinzai Solusi<br />Gerepek - Lombok Tengah</p>
-        </article>
+          <p class="value">
+            IONE HOME RESIDENCE<br />
+            Dusun Lendang Jae, Desa Lembar, Kecamatan Lembar<br />
+            Kabupaten Lombok Barat, Provinsi NTB
+          </p>
+          <span class="card-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </a>
+      </div>
+
+      <div class="map-preview-wrap">
+        <iframe
+          class="map-preview"
+          src="https://www.google.com/maps?q=IONE+HOME+RESIDENCE+Lendang+Jae+Desa+Lembar+Kecamatan+Lembar+Kabupaten+Lombok+Barat+NTB&output=embed"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Peta lokasi IONE HOME RESIDENCE"
+        ></iframe>
+        <a class="map-preview-open" href="https://maps.app.goo.gl/J7pokgLf3o3Qqt3W6" target="_blank" rel="noopener noreferrer">Buka di Google Maps</a>
       </div>
 
       <div class="agenda">
